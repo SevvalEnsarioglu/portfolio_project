@@ -1,22 +1,24 @@
-package com.sevval.portfolio_project.model;
+package com.sevval.portfolio_project.entity;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+
 @Entity
-public class Certificate {
+public class Award {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-    private String institution;
+    private String description;
     private LocalDate date;
-    private String certificateUrl;
+    private String organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Long getId() {
@@ -35,12 +37,12 @@ public class Certificate {
         this.title = title;
     }
 
-    public String getInstitution() {
-        return institution;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInstitution(String institution) {
-        this.institution = institution;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDate getDate() {
@@ -51,12 +53,12 @@ public class Certificate {
         this.date = date;
     }
 
-    public String getCertificateUrl() {
-        return certificateUrl;
+    public String getOrganization() {
+        return organization;
     }
 
-    public void setCertificateUrl(String certificateUrl) {
-        this.certificateUrl = certificateUrl;
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
     public User getUser() {
@@ -67,8 +69,7 @@ public class Certificate {
         this.user = user;
     }
 
-    public Certificate(){
+    public Award(){
 
     }
-
 }

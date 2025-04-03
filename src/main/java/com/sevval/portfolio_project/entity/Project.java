@@ -1,4 +1,4 @@
-package com.sevval.portfolio_project.model;
+package com.sevval.portfolio_project.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
