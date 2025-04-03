@@ -35,8 +35,11 @@ public class User {
     private String cvUrl;
 
     //EGITIM BILGILERI
+    @Deprecated
     private String school;
+    @Deprecated
     private String department;
+    @Deprecated
     private String educationStatus;
 
     //Liste tipindeki bilgileri ayrı bir tabloda tutacağız
