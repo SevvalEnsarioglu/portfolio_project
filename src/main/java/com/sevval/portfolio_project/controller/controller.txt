@@ -1,0 +1,77 @@
+BU SAYFA CONTROLLER KODU YAZILIRKEN ALDIĞIM NOTLARI İÇERMEKTEDİR.
+
+Controller nedir?
+* Controller, dış dünyadan (kullanıcı, frontend, postman vs.) gelen HTTP isteklerini
+karşılayan katmandır.
+* Kullanıcının veya frontend'in yaptığı get, post, delete, put gibi istekleri karşılar.
+* Bu istekleri uygun servis metoduna yönlendirir.
+* Gelen cevabı JSON, HTTP kodu vs. ile geri döner.
+* Gerekliliğinin sebebi veriyi doğrudan frontend'e göndermek güvenli değildir.
+* Controller sayesinde yetki kontrolleri yapılabilir.
+* Yanıtlar formatlanabilir.
+* Gereksiz erişim engellenir.
+* Sistem modüler hale gelir.
+
+Çalışma prensibi örnek durum:
+* Frontend tarafında biri "/api/users" adresine GET isteği gönderdiği zaman,
+* Bu istek öncelikli olarak Controller'a gelir.
+* Controller -> UserService'e yönlendirir.
+* UserService -> UserRepository'ye gider.
+* UserRepository -> Database'ten veri alır.
+* Veri yukarı döner ve JSON olarak kulanıcıya sunulur.
+
+Controller sayfasında kullanacağımız Anotasyonlar ve görevleri:
+
+@RestController :
+* Bu class'ın bir rest api controller olduğunu spring'e bildirir.
+* @Controller + @ResponseBody anotasyonlarının birleşimidir.
+* Geriye dönen her şey otomatik olarak JSON formatına çevrilir.
+
+@RequestMapping("/api/users") :
+* Bu sınıfın altındaki tüm endpoint'ler /api/users ile başlar.
+* Örnek: @GetMapping → /api/users
+         @PostMapping → /api/users
+         @GetMapping("/{id}") → /api/users/{id}
+
+@Autowired :
+* Spring, gerekli olan bileşeni (dependency) otomatik olarak verir (Dependency Injection).
+* Burada UserService'in otomatik enjekte edilmesini sağlar.
+
+@GetMapping:
+* HTTP GET isteklerini karşılamak için kullanılır.
+* Örnek: "/api/users" veya "/api/users/{id}"
+
+@PostMapping:
+* HTTP POST isteklerini karşılar (genellikle yeni veri eklemek için).
+* Body’den gelen veriyi alır.
+
+@DeleteMapping:
+* HTTP DELETE isteğini karşılar (veri silme işlemleri için).
+
+@RequestBody:
+* Gelen JSON verisini otomatik olarak Java nesnesine dönüştürür.
+* Örneğin, kullanıcıdan gelen User JSON → User objesine dönüşür.
+
+@PathVariable:
+* - URL'deki dinamik alanları (örneğin /users/{id}) Java değişkenine bağlar.
+* - Örneğin: /users/5 → id = 5 olur.
+
+ResponseEntity:
+* HTTP durum kodları ile birlikte veriyi döndürmek için kullanılır.
+* Başarılı işlemde 200 OK, kayıt oluşturulduysa 201 CREATED,
+yoksa 404 NOT FOUND gibi durumları kontrol eder.
+
+
+CRUD İşlemleri:
+CREATE: yeni bir nesne oluşturma, veritabanına kaydetme
+READ: mevcut nesneyi veritabanından okuma/getirme
+UPDATE: mevcut nesneyi veritabanında güncelleme
+DELETE: mevcut nesneyi silme
+
+
+
+
+
+
+
+
